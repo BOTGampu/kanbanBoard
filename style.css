@@ -75,6 +75,7 @@ section{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
     flex-grow: 1;
     border-radius: var(--border-radius-2xl);
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
