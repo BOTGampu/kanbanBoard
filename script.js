@@ -143,5 +143,29 @@ add_new_task.addEventListener("click", function () {
         dragElement = div;
 
     })
-
 })
+
+   
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btnDlt")) {
+        const task = e.target.closest(".task");
+        task.remove();
+        syncTasksAndCounts();
+    }
+});
+
+function syncTasksAndCounts() {
+    columns.forEach(cols => {
+        const tasks = cols.querySelectorAll(".task");
+        const count = cols.querySelector(".right");
+
+        tasksData[cols.id] = Array.from(tasks).map(t => ({
+            title: t.querySelector("h2").innerText,
+            desc: t.querySelector("p").innerText
+        }));
+
+        count.innerText = tasks.length;
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasksData));
+}
