@@ -9,8 +9,6 @@ let columns = [todo, progress, done]
 if (localStorage.getItem("tasks")) {
     const data = JSON.parse(localStorage.getItem("tasks"))
 
-    console.log("data", data);
-
     for (const col in data) {
 
         const column = document.querySelector(`#${col}`);
@@ -110,8 +108,10 @@ bgModal.addEventListener("click", function () {
 let add_new_task = document.querySelector("#add_new_task")
 add_new_task.addEventListener("click", function () {
 
-    let taskTitle = document.querySelector(".task_title_input").value
-    let taskDesc = document.querySelector(".task_description_textarea").value
+    let taskTitleInput = document.querySelector(".task_title_input")
+    let taskDescTextArea = document.querySelector(".task_description_textarea")
+    let taskTitle=taskTitleInput.value;
+    let taskDesc=taskDescTextArea.value;
 
     let div = document.createElement("div");
     div.classList.add("task")
@@ -137,6 +137,9 @@ add_new_task.addEventListener("click", function () {
         count.innerText = tasks.length
     })
     modal.classList.remove("active")
+    
+    taskTitleInput.value = "";
+    taskDescTextArea.value = "";
 
     div.addEventListener("drag", (e) => {
         e.preventDefault()
